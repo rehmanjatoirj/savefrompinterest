@@ -4,1314 +4,348 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Save From Pinterest - Pinterest Video Downloader Free HD</title>
-    <meta name="description" content="Download Pinterest videos for free with SaveFromPinterest. Fast HD Pinterest Video Downloader - no login, no watermark, 100% free. Supports pin.it and pinterest.com links.">
+    <meta name="description" content="Save From Pinterest - Free Pinterest video downloader. Download Pinterest videos in HD quality instantly. No login required, no watermark, 100% free.">
+    <meta name="keywords" content="save from pinterest, pinterest video downloader, download pinterest videos free, pinterest downloader">
     <link rel="canonical" href="https://savefrompinterest.com/">
-    
-    <!-- Open Graph -->
     <meta property="og:title" content="Save From Pinterest - Pinterest Video Downloader Free HD">
-    <meta property="og:description" content="Fast, Free Pinterest Video Downloader. Download HD videos without login or watermark.">
+    <meta property="og:description" content="Download Pinterest videos free in HD. No registration required.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://savefrompinterest.com/">
-    <meta property="og:image" content="https://savefrompinterest.com/og-image.jpg">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Save From Pinterest - Pinterest Video Downloader Free HD">
-    <meta name="twitter:description" content="Fast, Free Pinterest Video Downloader. Download HD videos without login or watermark.">
-    
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Schema.org -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Save From Pinterest",
-        "description": "Free Pinterest Video Downloader tool. Download HD videos from Pinterest without login or watermark.",
-        "url": "https://savefrompinterest.com/",
-        "applicationCategory": "UtilityApplication",
-        "operatingSystem": "Any",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        }
-    }
+    {"@context":"https://schema.org","@type":"WebApplication","name":"Save From Pinterest","url":"https://savefrompinterest.com","description":"Free Pinterest Video Downloader","applicationCategory":"MultimediaApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
     </script>
-
     <style>
-        :root {
-            --primary: #E60023;
-            --secondary: #FF4D6D;
-            --accent: #FF006E;
-            --bg: #0A0A0F;
-            --surface: rgba(255,255,255,0.05);
-            --text: #FFFFFF;
-            --text-secondary: #B0B0C3;
-            --border: rgba(255,255,255,0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Particle Canvas */
-        #particle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 4px;
-        }
-
-        /* ========== NAVBAR ========== */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 1rem 2rem;
-            background: rgba(10, 10, 15, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-        .navbar.hidden {
-            transform: translateY(-100%);
-            opacity: 0;
-        }
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            color: var(--text);
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 1.25rem;
-        }
-        .nav-logo-p {
-            width: 36px;
-            height: 36px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.1rem;
-            color: #fff;
-            box-shadow: 0 0 15px rgba(230, 0, 35, 0.5);
-            animation: floatLogo 3s ease-in-out infinite;
-        }
-        @keyframes floatLogo {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-6px) rotate(5deg); }
-        }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-        .nav-links a:hover {
-            color: var(--text);
-        }
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* ========== HERO ========== */
-        .hero {
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 120px 2rem 4rem;
-            perspective: 1000px;
-        }
-        .hero-container {
-            max-width: 900px;
-            width: 100%;
-            text-align: center;
-        }
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(230, 0, 35, 0.15);
-            border: 1px solid rgba(230, 0, 35, 0.3);
-            padding: 0.5rem 1.25rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            color: var(--secondary);
-            margin-bottom: 1.5rem;
-            animation: fadeInDown 0.8s ease forwards;
-            opacity: 0;
-        }
-        .hero-badge .pulse {
-            width: 8px;
-            height: 8px;
-            background: var(--primary);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.3); }
-        }
-        .hero h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, #fff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 0.8s ease 0.2s forwards;
-            opacity: 0;
-            text-shadow: 
-                1px 1px 0 rgba(230,0,35,0.2),
-                2px 2px 0 rgba(230,0,35,0.15),
-                3px 3px 0 rgba(230,0,35,0.1),
-                4px 4px 0 rgba(230,0,35,0.05);
-        }
-        .hero-subtitle {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            animation: fadeInUp 0.8s ease 0.4s forwards;
-            opacity: 0;
-        }
-
-        /* Downloader Card */
-        .downloader-card {
-            background: rgba(255,255,255,0.03);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            animation: fadeInUp 0.8s ease 0.6s forwards;
-            opacity: 0;
-            box-shadow: 
-                0 0 40px rgba(230, 0, 35, 0.1),
-                inset 0 1px 0 rgba(255,255,255,0.05);
-        }
-        .downloader-card::before {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            border-radius: 20px;
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(230,0,35,0.5), rgba(255,0,110,0.2), transparent 60%);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-        }
-        .downloader-card:hover {
-            transform: rotateX(2deg) rotateY(-2deg) translateZ(10px);
-            box-shadow: 
-                0 0 60px rgba(230, 0, 35, 0.2),
-                inset 0 1px 0 rgba(255,255,255,0.08);
-        }
-        .input-group {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 1.25rem;
-        }
-        .input-wrapper {
-            flex: 1;
-            position: relative;
-        }
-        .input-wrapper input {
-            width: 100%;
-            padding: 1rem 3rem 1rem 1.25rem;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text);
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .input-wrapper input::placeholder {
-            color: rgba(176, 176, 195, 0.6);
-        }
-        .input-wrapper input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 20px rgba(230, 0, 35, 0.2);
-        }
-        .copy-btn {
-            position: absolute;
-            right: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.08);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.4rem 0.6rem;
-            cursor: pointer;
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .copy-btn:hover {
-            background: rgba(230, 0, 35, 0.2);
-            color: var(--secondary);
-            border-color: var(--primary);
-        }
-        .download-btn {
-            position: relative;
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border: none;
-            border-radius: 12px;
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            min-height: 44px;
-            white-space: nowrap;
-        }
-        .download-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(230, 0, 35, 0.4);
-        }
-        .download-btn:active {
-            transform: scale(0.98);
-        }
-        .download-btn .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.4);
-            transform: scale(0);
-            animation: ripple 0.6s ease-out;
-            pointer-events: none;
-        }
-        @keyframes ripple {
-            to { transform: scale(4); opacity: 0; }
-        }
-
-        /* Loading Spinner */
-        .loader {
-            display: none;
-            width: 50px;
-            height: 50px;
-            margin: 1.5rem auto 0;
-            position: relative;
-        }
-        .loader.active { display: block; }
-        .loader-ring {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 3px solid transparent;
-            border-top-color: var(--primary);
-            border-right-color: var(--secondary);
-            animation: spin3d 1s linear infinite;
-        }
-        .loader-ring:nth-child(2) {
-            width: 70%;
-            height: 70%;
-            top: 15%;
-            left: 15%;
-            border-top-color: var(--accent);
-            border-right-color: var(--primary);
-            animation: spin3d 0.8s linear infinite reverse;
-        }
-        @keyframes spin3d {
-            0% { transform: rotateZ(0deg); }
-            100% { transform: rotateZ(360deg); }
-        }
-
-        /* Result Card */
-        .result-card {
-            display: none;
-            margin-top: 1.5rem;
-            padding: 1.5rem;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            text-align: left;
-            animation: fadeInUp 0.5s ease forwards;
-        }
-        .result-card.active { display: block; }
-        .result-thumb {
-            width: 100%;
-            max-height: 220px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            background: rgba(255,255,255,0.05);
-        }
-        .result-options {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-        .quality-btn {
-            flex: 1;
-            min-width: 120px;
-            padding: 0.75rem;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            color: var(--text);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            text-align: center;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            min-height: 44px;
-        }
-        .quality-btn:hover {
-            background: rgba(230, 0, 35, 0.15);
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
-        .quality-btn .badge {
-            font-size: 0.7rem;
-            padding: 0.15rem 0.5rem;
-            border-radius: 4px;
-            background: var(--primary);
-            color: #fff;
-            font-weight: 700;
-        }
-
-        /* Error Message */
-        .error-msg {
-            display: none;
-            margin-top: 1rem;
-            padding: 0.875rem 1.25rem;
-            background: rgba(230, 0, 35, 0.1);
-            border: 1px solid rgba(230, 0, 35, 0.3);
-            border-radius: 10px;
-            color: var(--secondary);
-            font-size: 0.9rem;
-        }
-        .error-msg.active { display: block; }
-
-        /* Trust Badges */
-        .trust-badges {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
-            animation: fadeInUp 0.8s ease 0.8s forwards;
-            opacity: 0;
-        }
-        .trust-badges span {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-        .trust-badges .check {
-            color: #22c55e;
-            font-weight: 700;
-        }
-
-        /* ========== SECTIONS COMMON ========== */
-        section {
-            position: relative;
-            z-index: 1;
-            padding: 5rem 2rem;
-        }
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1.75rem, 4vw, 2.5rem);
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 0.75rem;
-            background: linear-gradient(135deg, #fff 0%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Reveal Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ========== FEATURES ========== */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        .feature-card {
-            background: var(--surface);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            transform-style: preserve-3d;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
-            transition: left 0.5s ease;
-        }
-        .feature-card:hover::before {
-            left: 100%;
-        }
-        .feature-card:hover {
-            transform: translateY(-10px) translateZ(20px);
-            box-shadow: 0 20px 40px rgba(230, 0, 35, 0.15);
-            border-color: rgba(230, 0, 35, 0.3);
-        }
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 1.25rem;
-            background: rgba(230, 0, 35, 0.1);
-            border: 1px solid rgba(230, 0, 35, 0.2);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-        .feature-card h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
-            color: var(--text);
-        }
-        .feature-card p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* ========== HOW IT WORKS ========== */
-        .steps-wrapper {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        .step {
-            flex: 1;
-            min-width: 200px;
-            max-width: 300px;
-            text-align: center;
-            position: relative;
-        }
-        .step-number {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            font-size: 1.5rem;
-            box-shadow: 0 0 30px rgba(230, 0, 35, 0.4);
-            transform-style: preserve-3d;
-            animation: floatStep 3s ease-in-out infinite;
-            position: relative;
-            z-index: 2;
-        }
-        .step:nth-child(2) .step-number { animation-delay: 0.5s; }
-        .step:nth-child(3) .step-number { animation-delay: 1s; }
-        @keyframes floatStep {
-            0%, 100% { transform: rotateX(0deg) rotateY(0deg) translateZ(0); }
-            50% { transform: rotateX(10deg) rotateY(-10deg) translateZ(15px); }
-        }
-        .step h3 {
-            font-family: 'Orbitron', sans-serif;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-        .step p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        .step-connector {
-            display: none;
-            position: absolute;
-            top: 35px;
-            left: calc(50% + 50px);
-            width: calc(100% - 100px);
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            opacity: 0.4;
-        }
-        @media (min-width: 768px) {
-            .step-connector { display: block; }
-        }
-        .step-connector::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: -4px;
-            width: 0;
-            height: 0;
-            border-left: 8px solid var(--accent);
-            border-top: 5px solid transparent;
-            border-bottom: 5px solid transparent;
-        }
-
-        /* ========== FAQ ========== */
-        .faq-list {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .faq-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-            transition: border-color 0.3s ease;
-        }
-        .faq-item:hover {
-            border-color: rgba(230, 0, 35, 0.2);
-        }
-        .faq-question {
-            width: 100%;
-            padding: 1.25rem 1.5rem;
-            background: none;
-            border: none;
-            color: var(--text);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            text-align: left;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            transition: color 0.3s ease;
-            min-height: 44px;
-        }
-        .faq-question:hover {
-            color: var(--secondary);
-        }
-        .faq-icon {
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.4s ease;
-            flex-shrink: 0;
-        }
-        .faq-item.open .faq-icon {
-            transform: rotate(180deg);
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.4s ease;
-        }
-        .faq-item.open .faq-answer {
-            max-height: 300px;
-            padding: 0 1.5rem 1.25rem;
-        }
-        .faq-answer p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* ========== FOOTER ========== */
-        footer {
-            position: relative;
-            z-index: 1;
-            padding: 3rem 2rem 2rem;
-            border-top: 1px solid var(--border);
-            background: rgba(10, 10, 15, 0.8);
-        }
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--text);
-        }
-        .footer-logo .p-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            color: #fff;
-            font-size: 1rem;
-        }
-        .footer-tagline {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-        .footer-links a:hover {
-            color: var(--secondary);
-        }
-        .footer-copy {
-            color: rgba(176, 176, 195, 0.5);
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-        }
-
-        /* ========== ANIMATIONS ========== */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 768px) {
-            .navbar { padding: 0.875rem 1.25rem; }
-            .nav-links { display: none; }
-            .hero { padding: 100px 1.25rem 3rem; }
-            .downloader-card { padding: 1.5rem; }
-            .input-group { flex-direction: column; }
-            .download-btn { width: 100%; }
-            .trust-badges { gap: 1rem; }
-            .features-grid { grid-template-columns: 1fr; }
-            .steps-wrapper { flex-direction: column; align-items: center; }
-            .step { max-width: 100%; }
-            .step-connector { display: none !important; }
-            section { padding: 3.5rem 1.25rem; }
-        }
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 1.75rem; }
-            .downloader-card { padding: 1.25rem; border-radius: 16px; }
-            .result-options { flex-direction: column; }
-            .quality-btn { width: 100%; }
-        }
+        :root{--red:#E60023;--pink:#FF4D6D;--neon:#FF006E;--bg:#0A0A0F;--glass:rgba(255,255,255,0.08);--border:rgba(255,255,255,0.12);--text:#ffffff;--muted:#B0B0C3}
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;opacity:0;animation:fadeInBody .5s ease forwards}
+        @keyframes fadeInBody{to{opacity:1}}
+        #particle-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+        .navbar{position:fixed;top:0;width:100%;z-index:1000;padding:1rem 2rem;background:rgba(10,10,15,0.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .3s ease}
+        .navbar.scrolled{background:rgba(10,10,15,0.95)}
+        .nav-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+        .nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:var(--text);font-family:'Orbitron',sans-serif;font-weight:700;font-size:1.25rem}
+        .nav-logo-p{width:36px;height:36px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;color:#fff;box-shadow:0 0 20px rgba(230,0,35,0.6);animation:floatLogo 3s ease-in-out infinite}
+        @keyframes floatLogo{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-6px) rotate(5deg)}}
+        .nav-links{display:flex;gap:2rem;list-style:none}
+        .nav-links a{color:var(--muted);text-decoration:none;font-weight:500;font-size:.95rem;transition:color .3s ease}
+        .nav-links a:hover{color:var(--text)}
+        .hero{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 2rem 4rem}
+        .hero-container{max-width:900px;width:100%;text-align:center}
+        .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(230,0,35,0.15);border:1px solid rgba(230,0,35,0.3);padding:.5rem 1.25rem;border-radius:50px;font-size:.85rem;color:var(--pink);margin-bottom:1.5rem;animation:slideUp .6s ease forwards;opacity:0}
+        .hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(2rem,5vw,3.8rem);font-weight:900;line-height:1.2;margin-bottom:1rem;background:linear-gradient(135deg,#fff,var(--pink),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:slideUp .6s ease .15s forwards;opacity:0;text-shadow:1px 1px 0 rgba(230,0,35,0.3),2px 2px 0 rgba(230,0,35,0.2),3px 3px 0 rgba(230,0,35,0.1),4px 4px 10px rgba(230,0,35,0.3)}
+        .hero-subtitle{font-size:1.15rem;color:var(--muted);margin-bottom:2.5rem;animation:slideUp .6s ease .3s forwards;opacity:0}
+        .downloader-card{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:20px;padding:2.5rem;max-width:680px;margin:0 auto 2rem;position:relative;transform-style:preserve-3d;transition:transform .4s ease,box-shadow .4s ease;animation:slideUp .6s ease .45s forwards;opacity:0;perspective:1000px}
+        .downloader-card:hover{transform:rotateX(0) rotateY(0);box-shadow:0 0 60px rgba(230,0,35,0.2)}
+        .input-row{display:flex;gap:.75rem;margin-bottom:1rem}
+        .input-wrapper{flex:1;position:relative}
+        .input-wrapper input{width:100%;padding:1rem 3rem 1rem 1.25rem;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:12px;color:var(--text);font-family:'Poppins',sans-serif;font-size:1rem;outline:none;transition:border-color .3s ease,box-shadow .3s ease}
+        .input-wrapper input::placeholder{color:rgba(176,176,195,0.6)}
+        .input-wrapper input:focus{border-color:var(--red);box-shadow:0 0 20px rgba(230,0,35,0.2)}
+        .paste-btn{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.08);border:1px solid var(--border);border-radius:8px;padding:.4rem .6rem;cursor:pointer;color:var(--muted);transition:all .3s ease}
+        .paste-btn:hover{background:rgba(230,0,35,0.2);color:var(--pink);border-color:var(--red)}
+        .download-btn-main{width:100%;padding:1rem;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--red),var(--neon));border:none;border-radius:12px;color:#fff;font-family:'Poppins',sans-serif;font-weight:600;font-size:1.05rem;cursor:pointer;transition:transform .3s ease,box-shadow .3s ease;min-height:44px}
+        .download-btn-main:hover{transform:scale(1.02);box-shadow:0 0 30px rgba(230,0,35,0.4)}
+        .download-btn-main:disabled{opacity:.6;cursor:not-allowed;transform:none}
+        .spinner{display:none;width:40px;height:40px;margin:1.5rem auto 0;border:3px solid rgba(255,255,255,0.1);border-top-color:var(--red);border-radius:50%;animation:spin 1s linear infinite}
+        .spinner.active{display:block}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .error-box{display:none;margin-top:1rem;padding:.875rem 1.25rem;background:rgba(230,0,35,0.1);border:1px solid rgba(230,0,35,0.3);border-radius:10px;color:var(--pink);font-size:.9rem}
+        .error-box.active{display:block}
+        .result-card{display:none;margin-top:1.5rem;animation:slideUp .5s ease forwards}
+        .result-card.active{display:block}
+        .result-thumb{width:100%;max-height:240px;object-fit:cover;border-radius:12px;margin-bottom:1rem;background:rgba(255,255,255,0.05)}
+        .result-title{font-weight:600;margin-bottom:1rem;font-size:1rem}
+        .result-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:.75rem}
+        .result-actions button{flex:1;min-width:120px;padding:.75rem;background:linear-gradient(135deg,var(--red),var(--neon));border:none;border-radius:10px;color:#fff;font-family:'Poppins',sans-serif;font-weight:600;font-size:.95rem;cursor:pointer;text-align:center;transition:transform .3s ease,box-shadow .3s ease;min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:.4rem}
+        .result-actions button:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(230,0,35,0.3)}
+        .tip-text{font-size:.8rem;color:var(--muted);margin-bottom:.75rem}
+        .reset-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:.6rem 1.25rem;border-radius:10px;cursor:pointer;font-family:'Poppins',sans-serif;font-size:.9rem;transition:all .3s ease}
+        .reset-btn:hover{border-color:var(--red);color:var(--pink)}
+        .trust-badges{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;animation:slideUp .6s ease .6s forwards;opacity:0}
+        .trust-badges span{display:flex;align-items:center;gap:.4rem;font-size:.9rem;color:var(--muted)}
+        .trust-badges .check{color:#22c55e;font-weight:700}
+        section{position:relative;z-index:1;padding:5rem 2rem}
+        .section-title{font-family:'Orbitron',sans-serif;font-size:clamp(1.5rem,4vw,2.5rem);font-weight:700;text-align:center;margin-bottom:.75rem;background:linear-gradient(135deg,#fff,var(--pink),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .section-subtitle{text-align:center;color:var(--muted);margin-bottom:3rem;max-width:600px;margin-left:auto;margin-right:auto}
+        .container{max-width:1200px;margin:0 auto}
+        .reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+        .feature-card{background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:16px;padding:2rem;text-align:center;transform-style:preserve-3d;transition:transform .4s ease,box-shadow .4s ease,border-color .4s ease}
+        .feature-card:hover{transform:translateY(-8px) translateZ(20px);box-shadow:0 20px 40px rgba(230,0,35,0.15);border-color:rgba(230,0,35,0.4)}
+        .feature-icon{font-size:2rem;margin-bottom:1rem}
+        .feature-card h3{font-family:'Orbitron',sans-serif;font-size:1.1rem;margin-bottom:.5rem}
+        .feature-card p{font-size:.9rem;color:var(--muted)}
+        .steps-wrapper{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;position:relative}
+        .step{flex:1;min-width:220px;max-width:300px;text-align:center;position:relative}
+        .step-number{width:70px;height:70px;margin:0 auto 1.5rem;background:linear-gradient(135deg,var(--red),var(--neon));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.5rem;box-shadow:0 0 30px rgba(230,0,35,0.4);transition:transform .3s ease;cursor:default}
+        .step-number:hover{transform:scale(1.1)}
+        .step h3{font-family:'Orbitron',sans-serif;margin-bottom:.5rem;font-size:1.1rem}
+        .step p{color:var(--muted);font-size:.9rem}
+        .step-connector{display:none;position:absolute;top:35px;left:calc(50% + 45px);width:calc(100% - 90px);height:2px;background:linear-gradient(90deg,var(--red),var(--neon));opacity:.4}
+        @media(min-width:768px){.step-connector{display:block}}
+        .faq-list{max-width:800px;margin:0 auto}
+        .faq-item{background:var(--glass);border:1px solid var(--border);border-radius:14px;margin-bottom:1rem;overflow:hidden}
+        .faq-question{width:100%;padding:1.25rem 1.5rem;background:none;border:none;color:var(--text);font-family:'Poppins',sans-serif;font-weight:600;font-size:1rem;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;min-height:44px}
+        .faq-icon{width:24px;height:24px;display:flex;align-items:center;justify-content:center;transition:transform .4s ease;flex-shrink:0;font-size:1.5rem;color:var(--red)}
+        .faq-item.open .faq-icon{transform:rotate(45deg)}
+        .faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease}
+        .faq-item.open .faq-answer{max-height:300px;padding:0 1.5rem 1.25rem}
+        .faq-answer p{color:var(--muted);font-size:.95rem;line-height:1.7}
+        footer{position:relative;z-index:1;padding:3rem 2rem 2rem;border-top:1px solid var(--border);background:rgba(10,10,15,0.8)}
+        .footer-content{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+        .footer-logo{font-family:'Orbitron',sans-serif;font-weight:700;font-size:1.25rem;color:var(--pink)}
+        .footer-tagline{color:var(--muted);font-size:.9rem}
+        .footer-links{display:flex;gap:2rem;flex-wrap:wrap;justify-content:center}
+        .footer-links a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:color .3s ease}
+        .footer-links a:hover{color:var(--pink)}
+        .footer-copy{color:rgba(176,176,195,0.5);font-size:.85rem}
+        @keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes ripple{to{transform:scale(4);opacity:0}}
+        @media(max-width:768px){.nav-links{display:none}.hero{padding:100px 1.25rem 3rem}.input-row{flex-direction:column}.features-grid{grid-template-columns:repeat(2,1fr)}.steps-wrapper{flex-direction:column;align-items:center}.step-connector{display:none!important}section{padding:3.5rem 1.25rem}}
+        @media(max-width:480px){.hero h1{font-size:1.75rem}.downloader-card{padding:1.5rem}.features-grid{grid-template-columns:1fr}.result-actions{flex-direction:column}.result-actions button{width:100%}}
     </style>
 </head>
 <body>
 
-    <!-- Particle Background -->
-    <canvas id="particle-canvas"></canvas>
+<canvas id="particle-canvas"></canvas>
 
-    <!-- Navbar -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo">
-                <div class="nav-logo-p">P</div>
-                SaveFromPinterest
-            </a>
-            <ul class="nav-links">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#faq">FAQ</a></li>
-            </ul>
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="#" class="nav-logo"><div class="nav-logo-p">P</div>SaveFromPinterest</a>
+        <ul class="nav-links"><li><a href="#hero">Home</a></li><li><a href="#how-it-works">How It Works</a></li><li><a href="#faq">FAQ</a></li></ul>
+    </div>
+</nav>
+
+<section class="hero" id="hero">
+    <div class="hero-container">
+        <div class="hero-badge">&#9889; #1 Free Pinterest Downloader</div>
+        <h1>Download Pinterest Videos Free HD</h1>
+        <p class="hero-subtitle">Fast, Free &amp; No Login Required</p>
+
+        <div class="downloader-card">
+            <div class="input-row">
+                <div class="input-wrapper">
+                    <input type="text" id="url-input" placeholder="Paste Pinterest video URL here..." autocomplete="off">
+                    <button class="paste-btn" id="paste-btn" title="Paste from clipboard">&#128203;</button>
+                </div>
+            <button class="download-btn-main" id="download-btn">&#11015; Download Now</button>
+
+            <div class="spinner" id="spinner"></div>
+            <div class="error-box" id="error-box"></div>
+
+            <div class="result-card" id="result-card">
+                <img class="result-thumb" id="result-thumb" src="" alt="Video thumbnail" loading="lazy">
+                <div class="result-title" id="result-title"></div>
+                <div class="result-actions">
+                    <button id="btn-hd">&#11015; Download HD</button>
+                    <button id="btn-sd">&#11015; Download SD</button>
+                </div>
+                <p class="tip-text">If download doesn't start, right-click video &rarr; Save As</p>
+                <button class="reset-btn" id="reset-btn">&#11015; Try Another Video</button>
+            </div>
+
+        <div class="trust-badges">
+            <span><span class="check">&#10003;</span> Free Forever</span>
+            <span><span class="check">&#10003;</span> HD Quality</span>
+            <span><span class="check">&#10003;</span> No Watermark</span>
+            <span><span class="check">&#10003;</span> No Registration</span>
         </div>
-    </nav>
+</section>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-container">
-            <div class="hero-badge">
-                <span class="pulse"></span>
-                Free Pinterest Video Downloader
-            </div>
-            <h1>Download Pinterest Videos Free</h1>
-            <p class="hero-subtitle">Fast, Free, No Login Required</p>
-            
-            <div class="downloader-card">
-                <div class="input-group">
-                    <div class="input-wrapper">
-                        <input type="text" id="pinterest-url" placeholder="Paste Pinterest video URL here..." autocomplete="off">
-                        <button class="copy-btn" id="copy-btn" title="Copy URL">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                        </button>
-                    </div>
-                    <button class="download-btn" id="download-btn">
-                        <span>Download Now</span>
-                    </button>
-                </div>
-                
-                <div class="loader" id="loader">
-                    <div class="loader-ring"></div>
-                    <div class="loader-ring"></div>
-                </div>
-                
-                <div class="result-card" id="result-card">
-                    <img class="result-thumb" id="result-thumb" src="" alt="Video thumbnail" loading="lazy">
-                    <div class="result-options">
-                        <a class="quality-btn" id="download-hd" href="#" target="_blank">
-                            <span>HD Quality</span>
-                            <span class="badge">720p</span>
-                        </a>
-                        <a class="quality-btn" id="download-sd" href="#" target="_blank">
-                            <span>SD Quality</span>
-                            <span class="badge">360p</span>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="error-msg" id="error-msg"></div>
-            </div>
-            
-            <div class="trust-badges">
-                <span><span class="check">&#10003;</span> Free Forever</span>
-                <span><span class="check">&#10003;</span> HD Quality</span>
-                <span><span class="check">&#10003;</span> No Watermark</span>
-            </div>
+<section id="features">
+    <div class="container">
+        <h2 class="section-title reveal">Why Choose Us?</h2>
+        <p class="section-subtitle reveal">The best Pinterest video downloader with powerful features</p>
+        <div class="features-grid">
+            <div class="feature-card reveal"><div class="feature-icon">&#9889;</div><h3>Lightning Fast</h3><p>Download in seconds, no waiting</p></div>
+            <div class="feature-card reveal"><div class="feature-icon">&#127916;</div><h3>HD Quality</h3><p>Highest available quality, Full HD support</p></div>
+            <div class="feature-card reveal"><div class="feature-icon">&#10035;</div><h3>100% Free</h3><p>No hidden charges, no premium plans ever</p></div>
+            <div class="feature-card reveal"><div class="feature-icon">&#128275;</div><h3>No Registration</h3><p>No account needed, just paste and download</p></div>
+            <div class="feature-card reveal"><div class="feature-icon">&#128241;</div><h3>Mobile Friendly</h3><p>Works on iPhone, Android, any device</p></div>
+            <div class="feature-card reveal"><div class="feature-icon">&#128737;</div><h3>Safe &amp; Secure</h3><p>No malware, your data never stored</p></div>
+    </div>
+</section>
+
+<section id="how-it-works">
+    <div class="container">
+        <h2 class="section-title reveal">How It Works</h2>
+        <p class="section-subtitle reveal">Download Pinterest videos in 3 simple steps</p>
+        <div class="steps-wrapper">
+            <div class="step reveal"><div class="step-number">1</div><div class="step-connector"></div><h3>Copy Pinterest URL</h3><p>Open Pinterest app, find video, tap Share &rarr; Copy Link</p></div>
+            <div class="step reveal"><div class="step-number">2</div><div class="step-connector"></div><h3>Paste the URL</h3><p>Paste copied link into the input box above</p></div>
+            <div class="step reveal"><div class="step-number">3</div><h3>Download Video</h3><p>Choose HD or SD quality and save to your device</p></div>
+    </div>
+</section>
+
+<section id="faq">
+    <div class="container">
+        <h2 class="section-title reveal">Frequently Asked Questions</h2>
+        <p class="section-subtitle reveal">Find answers to common questions about our Pinterest video downloader</p>
+        <div class="faq-list">
+            <div class="faq-item reveal"><button class="faq-question">Is SaveFromPinterest free? <span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes, completely free! No subscriptions, no premium tiers, unlimited downloads forever.</p></div>
+            <div class="faq-item reveal"><button class="faq-question">What video quality can I download? <span class="faq-icon">+</span></button><div class="faq-answer"><p>We offer HD and SD quality. We always fetch the best available quality from the original pin.</p></div>
+            <div class="faq-item reveal"><button class="faq-question">Do I need to create an account? <span class="faq-icon">+</span></button><div class="faq-answer"><p>No account, no login, no registration. Just paste URL and download. We respect your privacy.</p></div>
+            <div class="faq-item reveal"><button class="faq-question">Is it safe to use? <span class="faq-icon">+</span></button><div class="faq-answer"><p>100% safe. No malware, no trackers. We don't store your URLs or any personal data.</p></div>
+            <div class="faq-item reveal"><button class="faq-question">Can I download on mobile? <span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes! Fully optimized for iPhone, Android, iPad. Touch-friendly and fully responsive.</p></div>
         </div>
-    </section>
+</section>
 
-    <!-- Features Section -->
-    <section id="features">
-        <div class="container">
-            <h2 class="section-title reveal">Why Choose Us</h2>
-            <p class="section-subtitle reveal">The best Pinterest video downloader with powerful features</p>
-            <div class="features-grid">
-                <div class="feature-card reveal">
-                    <div class="feature-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                    </div>
-                    <h3>Lightning Fast</h3>
-                    <p>Download Pinterest videos in seconds with our optimized servers and high-speed processing.</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-                    </div>
-                    <h3>HD Quality</h3>
-                    <p>Download videos in high definition up to 720p quality for the best viewing experience.</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                    </div>
-                    <h3>100% Free</h3>
-                    <p>No hidden fees, no subscriptions. Use our Pinterest video downloader completely free forever.</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                    </div>
-                    <h3>No Registration</h3>
-                    <p>Start downloading immediately without creating an account or providing personal information.</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
-                    </div>
-                    <h3>Mobile Friendly</h3>
-                    <p>Works perfectly on all devices including smartphones, tablets, and desktop computers.</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                    </div>
-                    <h3>Safe & Secure</h3>
-                    <p>Your privacy is protected. We don't store your downloaded videos or browsing history.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<footer>
+    <div class="footer-content">
+        <div class="footer-logo">SaveFromPinterest</div>
+        <p class="footer-tagline">The easiest way to download Pinterest videos for free</p>
+        <div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Contact</a></div>
+        <p class="footer-copy">&copy; 2024 SaveFromPinterest.com &mdash; All rights reserved</p>
+    </div>
+</footer>
 
-    <!-- How It Works Section -->
-    <section id="how-it-works">
-        <div class="container">
-            <h2 class="section-title reveal">How It Works</h2>
-            <p class="section-subtitle reveal">Download Pinterest videos in 3 simple steps</p>
-            <div class="steps-wrapper">
-                <div class="step reveal">
-                    <div class="step-number">1</div>
-                    <div class="step-connector"></div>
-                    <h3>Copy Pinterest URL</h3>
-                    <p>Open Pinterest and copy the video URL from your browser address bar or share button.</p>
-                </div>
-                <div class="step reveal">
-                    <div class="step-number">2</div>
-                    <div class="step-connector"></div>
-                    <h3>Paste in Our Tool</h3>
-                    <p>Paste the copied Pinterest video URL into the input field above and click Download.</p>
-                </div>
-                <div class="step reveal">
-                    <div class="step-number">3</div>
-                    <h3>Click Download</h3>
-                    <p>Choose your preferred video quality and download the Pinterest video to your device.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq">
-        <div class="container">
-            <h2 class="section-title reveal">Frequently Asked Questions</h2>
-            <p class="section-subtitle reveal">Find answers to common questions about our Pinterest video downloader</p>
-            <div class="faq-list">
-                <div class="faq-item reveal">
-                    <button class="faq-question">
-                        Is SaveFromPinterest free?
-                        <span class="faq-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Yes, SaveFromPinterest is completely free to use. There are no hidden fees, no subscriptions, and no limits on the number of videos you can download. We believe everyone should have access to a free Pinterest video downloader.</p>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-question">
-                        What video quality can I download?
-                        <span class="faq-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Our Pinterest video downloader supports multiple quality options. You can download videos in HD quality (720p) for the best viewing experience, or choose SD quality (360p) for smaller file sizes. The available quality depends on the original video uploaded to Pinterest.</p>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-question">
-                        Do I need to create an account?
-                        <span class="faq-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>No, you don't need to create an account or log in. Our tool is designed for instant use - just paste the Pinterest video URL and download. No personal information required, no registration process, completely hassle-free.</p>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-question">
-                        Is it safe to use?
-                        <span class="faq-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Yes, SaveFromPinterest is completely safe to use. We don't install any software on your device, we don't store your downloaded videos, and we don't track your browsing history. Our website uses secure HTTPS connections to protect your data.</p>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-question">
-                        Can I download on mobile?
-                        <span class="faq-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Absolutely! Our Pinterest video downloader is fully responsive and works perfectly on all mobile devices including iPhones, Android phones, and tablets. You can download Pinterest videos directly to your mobile device without any additional apps.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <div class="p-icon">P</div>
-                SaveFromPinterest
-            </div>
-            <p class="footer-tagline">The fastest way to download Pinterest videos</p>
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Contact</a>
-            </div>
-            <p class="footer-copy">&copy; 2024 SaveFromPinterest.com. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // ========== PARTICLE BACKGROUND ==========
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        let mouseX = 0, mouseY = 0;
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+<script>
+(function(){
+    var canvas=document.getElementById('particle-canvas');
+    var ctx=canvas.getContext('2d');
+    var particles=[];
+    function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+    resize();
+    window.addEventListener('resize',resize);
+    for(var i=0;i<150;i++){
+        particles.push({
+            x:Math.random()*canvas.width,
+            y:Math.random()*canvas.height,
+            size:Math.random()*1.5+0.3,
+            speedX:(Math.random()-0.5)*0.4,
+            speedY:(Math.random()-0.5)*0.4,
+            alpha:Math.random()*0.6+0.1
         });
-
-        class Particle {
-            constructor() {
-                this.reset();
-            }
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.speedY = (Math.random() - 0.5) * 0.5;
-                this.opacity = Math.random() * 0.5 + 0.1;
-                this.depth = Math.random();
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                
-                // Mouse interaction
-                const dx = mouseX - this.x;
-                const dy = mouseY - this.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 150) {
-                    this.x -= dx * 0.01;
-                    this.y -= dy * 0.01;
-                }
-                
-                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
-                    this.reset();
-                }
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size * this.depth + 0.5, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(230, 0, 35, ${this.opacity * this.depth})`;
-                ctx.fill();
-            }
-        }
-
-        for (let i = 0; i < 150; i++) {
-            particles.push(new Particle());
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            // Draw connections
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 100) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(230, 0, 35, ${0.1 * (1 - dist / 100)})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
-
-        // ========== NAVBAR SCROLL BEHAVIOR ==========
-        let lastScroll = 0;
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            if (currentScroll > lastScroll && currentScroll > 100) {
-                navbar.classList.add('hidden');
-            } else {
-                navbar.classList.remove('hidden');
-            }
-            lastScroll = currentScroll;
+    }
+    function animate(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        particles.forEach(function(p){
+            p.x+=p.speedX;p.y+=p.speedY;
+            if(p.x<0||p.x>canvas.width)p.speedX*=-1;
+            if(p.y<0||p.y>canvas.height)p.speedY*=-1;
+            ctx.beginPath();
+            ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+            ctx.fillStyle='rgba(255,77,109,'+p.alpha+')';
+            ctx.fill();
         });
+        requestAnimationFrame(animate);
+    }
+    animate();
 
-        // ========== SCROLL REVEAL ==========
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        revealElements.forEach(el => revealObserver.observe(el));
+    var navbar=document.getElementById('navbar');
+    window.addEventListener('scroll',function(){
+        navbar.classList.toggle('scrolled',window.scrollY>50);
+    });
 
-        // ========== RIPPLE EFFECT ==========
-        document.querySelectorAll('.download-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const rect = this.getBoundingClientRect();
-                const ripple = document.createElement('span');
-                ripple.classList.add('ripple');
-                ripple.style.left = (e.clientX - rect.left) + 'px';
-                ripple.style.top = (e.clientY - rect.top) + 'px';
-                this.appendChild(ripple);
-                setTimeout(() => ripple.remove(), 600);
-            });
+    var revealEls=document.querySelectorAll('.reveal');
+    var obs=new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+            if(entry.isIntersecting){entry.target.classList.add('visible');obs.unobserve(entry.target);}
         });
+    },{threshold:0.1});
+    revealEls.forEach(function(el){obs.observe(el);});
 
-        // ========== DOWNLOADER FUNCTIONALITY ==========
-        const urlInput = document.getElementById('pinterest-url');
-        const downloadBtn = document.getElementById('download-btn');
-        const copyBtn = document.getElementById('copy-btn');
-        const loader = document.getElementById('loader');
-        const resultCard = document.getElementById('result-card');
-        const resultThumb = document.getElementById('result-thumb');
-        const downloadHd = document.getElementById('download-hd');
-        const downloadSd = document.getElementById('download-sd');
-        const errorMsg = document.getElementById('error-msg');
+    var urlInput=document.getElementById('url-input');
+    var pasteBtn=document.getElementById('paste-btn');
+    var downloadBtn=document.getElementById('download-btn');
+    var spinner=document.getElementById('spinner');
+    var errorBox=document.getElementById('error-box');
+    var resultCard=document.getElementById('result-card');
+    var resultThumb=document.getElementById('result-thumb');
+    var resultTitle=document.getElementById('result-title');
+    var btnHd=document.getElementById('btn-hd');
+    var btnSd=document.getElementById('btn-sd');
+    var resetBtn=document.getElementById('reset-btn');
+    var currentVideoUrl='';
 
-        function isValidPinterestUrl(url) {
-            return url.includes('pinterest.com') || url.includes('pin.it');
-        }
+    function showError(msg){
+        spinner.classList.remove('active');
+        errorBox.textContent=msg;
+        errorBox.classList.add('active');
+        downloadBtn.disabled=false;
+    }
+    function resetTool(){
+        urlInput.value='';
+        errorBox.classList.remove('active');
+        resultCard.classList.remove('active');
+        downloadBtn.disabled=false;
+        urlInput.focus();
+    }
+    async function pasteUrl(){
+        try{var text=await navigator.clipboard.readText();if(text)urlInput.value=text;}
+        catch(e){urlInput.focus();}
+    }
+    function downloadFile(videoUrl){
+        var a=document.createElement('a');
+        a.href=videoUrl;
+        a.download='pinterest-video.mp4';
+        a.target='_blank';
+        a.rel='noopener';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+    async function handleDownload(){
+        var url=urlInput.value.trim();
+        if(!url){showError('Please paste a Pinterest URL first');return;}
+        if(url.indexOf('pinterest.com')===-1&&url.indexOf('pin.it')===-1){showError('Invalid URL. Only pinterest.com and pin.it links are supported.');return;}
+        errorBox.classList.remove('active');
+        resultCard.classList.remove('active');
+        spinner.classList.add('active');
+        downloadBtn.disabled=true;
+        try{
+            var res=await fetch('/api/download?url='+encodeURIComponent(url));
+            var data=await res.json();
+            spinner.classList.remove('active');
+            downloadBtn.disabled=false;
+            if(!data.success){showError(data.error||'Failed to fetch video');return;}
+            currentVideoUrl=data.videoUrl;
+            resultThumb.src=data.thumbnailUrl||'';
+            resultThumb.style.display=data.thumbnailUrl?'block':'none';
+            resultTitle.textContent=data.title||'Pinterest Video';
+            resultCard.classList.add('active');
+            resultCard.scrollIntoView({behavior:'smooth',block:'nearest'});
+        }catch(err){showError('Network error. Please try again.');}
+    }
 
-        function showError(message) {
-            errorMsg.textContent = message;
-            errorMsg.classList.add('active');
-            setTimeout(() => errorMsg.classList.remove('active'), 5000);
-        }
+    pasteBtn.addEventListener('click',pasteUrl);
+    downloadBtn.addEventListener('click',handleDownload);
+    urlInput.addEventListener('keypress',function(e){if(e.key==='Enter')handleDownload();});
+    btnHd.addEventListener('click',function(){downloadFile(currentVideoUrl);});
+    btnSd.addEventListener('click',function(){downloadFile(currentVideoUrl);});
+    resetBtn.addEventListener('click',resetTool);
 
-        function resetUI() {
-            loader.classList.remove('active');
-            resultCard.classList.remove('active');
-            errorMsg.classList.remove('active');
-        }
-
-        downloadBtn.addEventListener('click', async () => {
-            const url = urlInput.value.trim();
-            
-            if (!url) {
-                showError('Please enter a Pinterest video URL');
-                return;
-            }
-            
-            if (!isValidPinterestUrl(url)) {
-                showError('Please enter a valid Pinterest URL (pinterest.com or pin.it)');
-                return;
-            }
-
-            resetUI();
-            loader.classList.add('active');
-
-            try {
-                // Try savepin.app approach
-                const encodedUrl = encodeURIComponent(url);
-                const apiUrl = `https://www.savepin.app/download.php?url=${encodedUrl}`;
-                
-                // Attempt fetch (may fail due to CORS, so we handle that)
-                const response = await fetch(apiUrl, { 
-                    method: 'GET',
-                    mode: 'no-cors'
-                });
-                
-                // Since no-cors doesn't give us readable response, we show result with redirect links
-                // This is the practical approach for client-side downloaders
-                setTimeout(() => {
-                    loader.classList.remove('active');
-                    
-                    // Show result card with download options
-                    resultThumb.src = `https://www.savepin.app/preview.php?url=${encodedUrl}`;
-                    resultThumb.onerror = () => {
-                        resultThumb.style.display = 'none';
-                    };
-                    
-                    downloadHd.href = apiUrl;
-                    downloadSd.href = `https://snapinsta.app/pinterest?url=${encodedUrl}`;
-                    
-                    resultCard.classList.add('active');
-                }, 2000);
-                
-            } catch (error) {
-                loader.classList.remove('active');
-                
-                // Fallback: redirect to snapinsta
-                const encodedUrl = encodeURIComponent(url);
-                const fallbackUrl = `https://snapinsta.app/pinterest?url=${encodedUrl}`;
-                
-                // Show fallback option
-                resultThumb.style.display = 'none';
-                downloadHd.href = fallbackUrl;
-                downloadSd.href = fallbackUrl;
-                downloadHd.querySelector('span').textContent = 'Open Downloader';
-                downloadSd.style.display = 'none';
-                resultCard.classList.add('active');
-            }
+    document.querySelectorAll('.faq-question').forEach(function(q){
+        q.addEventListener('click',function(){
+            var item=q.parentElement;
+            var isOpen=item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(function(f){f.classList.remove('open');});
+            if(!isOpen)item.classList.add('open');
         });
+    });
 
-        // Copy button functionality
-        copyBtn.addEventListener('click', async () => {
-            try {
-                await navigator.clipboard.writeText(urlInput.value);
-                copyBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
-                setTimeout(() => {
-                    copyBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
-                }, 2000);
-            } catch (err) {
-                urlInput.select();
-                document.execCommand('copy');
-            }
-        });
-
-        // Enter key support
-        urlInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                downloadBtn.click();
-            }
-        });
-
-        // ========== FAQ ACCORDION ==========
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const item = question.parentElement;
-                const isOpen = item.classList.contains('open');
-                
-                // Close all items
-                document.querySelectorAll('.faq-item').forEach(faq => {
-                    faq.classList.remove('open');
-                });
-                
-                // Open clicked item if it was closed
-                if (!isOpen) {
-                    item.classList.add('open');
-                }
-            });
-        });
-
-        // ========== MOBILE NAV TOGGLE (optional enhancement) ==========
-        // Add mobile menu functionality if needed in future
-    </script>
+    downloadBtn.addEventListener('click',function(e){
+        var rect=this.getBoundingClientRect();
+        var ripple=document.createElement('span');
+        ripple.style.position='absolute';
+        ripple.style.borderRadius='50%';
+        ripple.style.background='rgba(255,255,255,0.3)';
+        ripple.style.transform='scale(0)';
+        ripple.style.animation='ripple 0.6s ease-out';
+        ripple.style.pointerEvents='none';
+        ripple.style.width='20px';
+        ripple.style.height='20px';
+        ripple.style.left=(e.clientX-rect.left-10)+'px';
+        ripple.style.top=(e.clientY-rect.top-10)+'px';
+        this.appendChild(ripple);
+        setTimeout(function(){ripple.remove();},600);
+    });
+})();
+</script>
 </body>
 </html>
-
