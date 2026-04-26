@@ -55,16 +55,31 @@
         @keyframes spin{to{transform:rotate(360deg)}}
         .error-box{display:none;margin-top:1rem;padding:.875rem 1.25rem;background:rgba(230,0,35,0.1);border:1px solid rgba(230,0,35,0.3);border-radius:10px;color:var(--pink);font-size:.9rem}
         .error-box.active{display:block}
-        .result-card{display:none;margin-top:1.5rem;animation:slideUp .5s ease forwards}
-        .result-card.active{display:block}
-        .result-thumb{width:100%;max-height:240px;object-fit:cover;border-radius:12px;margin-bottom:1rem;background:rgba(255,255,255,0.05)}
-        .result-title{font-weight:600;margin-bottom:1rem;font-size:1rem}
-        .result-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:.75rem}
-        .result-actions button{flex:1;min-width:120px;padding:.75rem;background:linear-gradient(135deg,var(--red),var(--neon));border:none;border-radius:10px;color:#fff;font-family:'Poppins',sans-serif;font-weight:600;font-size:.95rem;cursor:pointer;text-align:center;transition:transform .3s ease,box-shadow .3s ease;min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:.4rem}
-        .result-actions button:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(230,0,35,0.3)}
-        .tip-text{font-size:.8rem;color:var(--muted);margin-bottom:.75rem}
-        .reset-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:.6rem 1.25rem;border-radius:10px;cursor:pointer;font-family:'Poppins',sans-serif;font-size:.9rem;transition:all .3s ease}
-        .reset-btn:hover{border-color:var(--red);color:var(--pink)}
+
+        /* Result Card */
+        .result-card{display:none;margin-top:1.5rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:1.8rem;text-align:left;animation:fadeInUp .5s ease}
+        .result-card.show{display:block}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+        .thumb-wrap{width:100%;border-radius:12px;overflow:hidden;margin-bottom:1rem;background:rgba(255,255,255,0.05);min-height:40px}
+        .thumb-wrap img{width:100%;max-height:220px;object-fit:cover;display:block;border-radius:12px}
+
+        .result-title{font-size:.9rem;color:var(--muted);margin-bottom:1rem;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+        .success-badge{font-size:.85rem;color:#4ade80;margin-bottom:1rem;font-weight:500}
+
+        .dl-btns-row{display:flex;gap:.8rem;margin-bottom:1rem}
+        .dl-quality-btn{flex:1;padding:.85rem 1rem;border:none;border-radius:12px;font-size:.95rem;font-weight:600;font-family:'Poppins',sans-serif;cursor:pointer;transition:all .3s ease;letter-spacing:.3px}
+        .hd-btn{background:linear-gradient(135deg,#E60023,#FF006E);color:#fff;box-shadow:0 4px 20px rgba(230,0,35,0.4)}
+        .hd-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(230,0,35,0.6)}
+        .sd-btn{background:rgba(255,255,255,0.08);color:#fff;border:1.5px solid rgba(255,255,255,0.2)}
+        .sd-btn:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,77,109,0.5);transform:translateY(-2px)}
+
+        .dl-tip{font-size:.78rem;color:var(--muted);margin-bottom:1rem;line-height:1.5}
+
+        .reset-btn{width:100%;padding:.7rem;background:transparent;border:1.5px solid rgba(255,255,255,0.15);border-radius:10px;color:var(--muted);font-size:.9rem;font-family:'Poppins',sans-serif;cursor:pointer;transition:all .2s}
+        .reset-btn:hover{border-color:rgba(255,77,109,0.5);color:#FF4D6D}
+
         .trust-badges{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;animation:slideUp .6s ease .6s forwards;opacity:0}
         .trust-badges span{display:flex;align-items:center;gap:.4rem;font-size:.9rem;color:var(--muted)}
         .trust-badges .check{color:#22c55e;font-weight:700}
@@ -107,7 +122,7 @@
         @keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
         @keyframes ripple{to{transform:scale(4);opacity:0}}
         @media(max-width:768px){.nav-links{display:none}.hero{padding:100px 1.25rem 3rem}.input-row{flex-direction:column}.features-grid{grid-template-columns:repeat(2,1fr)}.steps-wrapper{flex-direction:column;align-items:center}.step-connector{display:none!important}section{padding:3.5rem 1.25rem}}
-        @media(max-width:480px){.hero h1{font-size:1.75rem}.downloader-card{padding:1.5rem}.features-grid{grid-template-columns:1fr}.result-actions{flex-direction:column}.result-actions button{width:100%}}
+        @media(max-width:480px){.hero h1{font-size:1.75rem}.downloader-card{padding:1.5rem}.features-grid{grid-template-columns:1fr}.dl-btns-row{flex-direction:column}}
     </style>
 </head>
 <body>
@@ -133,21 +148,26 @@
                     <input type="text" id="url-input" placeholder="Paste Pinterest video URL here..." autocomplete="off">
                     <button class="paste-btn" id="paste-btn" title="Paste from clipboard">&#128203;</button>
                 </div>
+            </div>
             <button class="download-btn-main" id="download-btn">&#11015; Download Now</button>
 
             <div class="spinner" id="spinner"></div>
             <div class="error-box" id="error-box"></div>
 
-            <div class="result-card" id="result-card">
-                <img class="result-thumb" id="result-thumb" src="" alt="Video thumbnail" loading="lazy">
-                <div class="result-title" id="result-title"></div>
-                <div class="result-actions">
-                    <button id="btn-hd">&#11015; Download HD</button>
-                    <button id="btn-sd">&#11015; Download SD</button>
+            <div class="result-card" id="resultCard">
+                <div class="thumb-wrap">
+                    <img id="resultThumb" src="" alt="Pinterest Video Thumbnail" onerror="this.parentElement.style.display='none'">
                 </div>
-                <p class="tip-text">If download doesn't start, right-click video &rarr; Save As</p>
-                <button class="reset-btn" id="reset-btn">&#11015; Try Another Video</button>
+                <p id="resultTitle" class="result-title"></p>
+                <div class="success-badge">&#9989; Video found! Choose quality to download:</div>
+                <div class="dl-btns-row">
+                    <button class="dl-quality-btn hd-btn" id="btn-hd">&#11015; Download HD</button>
+                    <button class="dl-quality-btn sd-btn" id="btn-sd">&#11015; Download SD</button>
+                </div>
+                <p class="dl-tip">&#128161; If download doesn't start automatically — right-click the video on Pinterest &rarr; "Save video as"</p>
+                <button class="reset-btn" id="reset-btn">&#8617; Try Another Video</button>
             </div>
+        </div>
 
         <div class="trust-badges">
             <span><span class="check">&#10003;</span> Free Forever</span>
@@ -155,6 +175,7 @@
             <span><span class="check">&#10003;</span> No Watermark</span>
             <span><span class="check">&#10003;</span> No Registration</span>
         </div>
+    </div>
 </section>
 
 <section id="features">
@@ -168,6 +189,7 @@
             <div class="feature-card reveal"><div class="feature-icon">&#128275;</div><h3>No Registration</h3><p>No account needed, just paste and download</p></div>
             <div class="feature-card reveal"><div class="feature-icon">&#128241;</div><h3>Mobile Friendly</h3><p>Works on iPhone, Android, any device</p></div>
             <div class="feature-card reveal"><div class="feature-icon">&#128737;</div><h3>Safe &amp; Secure</h3><p>No malware, your data never stored</p></div>
+        </div>
     </div>
 </section>
 
@@ -179,6 +201,7 @@
             <div class="step reveal"><div class="step-number">1</div><div class="step-connector"></div><h3>Copy Pinterest URL</h3><p>Open Pinterest app, find video, tap Share &rarr; Copy Link</p></div>
             <div class="step reveal"><div class="step-number">2</div><div class="step-connector"></div><h3>Paste the URL</h3><p>Paste copied link into the input box above</p></div>
             <div class="step reveal"><div class="step-number">3</div><h3>Download Video</h3><p>Choose HD or SD quality and save to your device</p></div>
+        </div>
     </div>
 </section>
 
@@ -187,12 +210,13 @@
         <h2 class="section-title reveal">Frequently Asked Questions</h2>
         <p class="section-subtitle reveal">Find answers to common questions about our Pinterest video downloader</p>
         <div class="faq-list">
-            <div class="faq-item reveal"><button class="faq-question">Is SaveFromPinterest free? <span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes, completely free! No subscriptions, no premium tiers, unlimited downloads forever.</p></div>
-            <div class="faq-item reveal"><button class="faq-question">What video quality can I download? <span class="faq-icon">+</span></button><div class="faq-answer"><p>We offer HD and SD quality. We always fetch the best available quality from the original pin.</p></div>
-            <div class="faq-item reveal"><button class="faq-question">Do I need to create an account? <span class="faq-icon">+</span></button><div class="faq-answer"><p>No account, no login, no registration. Just paste URL and download. We respect your privacy.</p></div>
-            <div class="faq-item reveal"><button class="faq-question">Is it safe to use? <span class="faq-icon">+</span></button><div class="faq-answer"><p>100% safe. No malware, no trackers. We don't store your URLs or any personal data.</p></div>
-            <div class="faq-item reveal"><button class="faq-question">Can I download on mobile? <span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes! Fully optimized for iPhone, Android, iPad. Touch-friendly and fully responsive.</p></div>
+            <div class="faq-item reveal"><button class="faq-question">Is SaveFromPinterest free? <span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes, completely free! No subscriptions, no premium tiers, unlimited downloads forever.</p></div></div>
+            <div class="faq-item reveal"><button class="faq-question">What video quality can I download? <span class="faq-icon">+</span></button><div class="faq-answer"><p>We offer HD and SD quality. We always fetch the best available quality from the original pin.</p></div></div>
+            <div class="faq-item reveal"><button class="faq-question">Do I need to create an account? <span class="faq-icon">+</span></button><div class="faq-answer"><p>No account, no login, no registration. Just paste URL and download. We respect your privacy.</p></div></div>
+            <div class="faq-item reveal"><button class="faq-question">Is it safe to use? <span class="faq-icon">+</span></button><div class="faq-answer"><p>100% safe. No malware, no trackers. We don't store your URLs or any personal data.</p></div></div>
+            <div class="faq-item reveal"><button class="faq-question">Can I download on mobile? <span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes! Fully optimized for iPhone, Android, iPad. Touch-friendly and fully responsive.</p></div></div>
         </div>
+    </div>
 </section>
 
 <footer>
@@ -255,9 +279,9 @@
     var downloadBtn=document.getElementById('download-btn');
     var spinner=document.getElementById('spinner');
     var errorBox=document.getElementById('error-box');
-    var resultCard=document.getElementById('result-card');
-    var resultThumb=document.getElementById('result-thumb');
-    var resultTitle=document.getElementById('result-title');
+    var resultCard=document.getElementById('resultCard');
+    var resultThumb=document.getElementById('resultThumb');
+    var resultTitle=document.getElementById('resultTitle');
     var btnHd=document.getElementById('btn-hd');
     var btnSd=document.getElementById('btn-sd');
     var resetBtn=document.getElementById('reset-btn');
@@ -272,7 +296,7 @@
     function resetTool(){
         urlInput.value='';
         errorBox.classList.remove('active');
-        resultCard.classList.remove('active');
+        resultCard.classList.remove('show');
         downloadBtn.disabled=false;
         urlInput.focus();
     }
@@ -290,12 +314,32 @@
         a.click();
         document.body.removeChild(a);
     }
+    function showResult(data){
+        currentVideoUrl=data.videoUrl;
+        var thumb=document.getElementById('resultThumb');
+        if(data.thumbnailUrl){
+            thumb.src=data.thumbnailUrl;
+            thumb.parentElement.style.display='block';
+        }else{
+            thumb.parentElement.style.display='none';
+        }
+        var titleEl=document.getElementById('resultTitle');
+        if(data.title){
+            titleEl.textContent=data.title;
+            titleEl.style.display='block';
+        }else{
+            titleEl.style.display='none';
+        }
+        var card=document.getElementById('resultCard');
+        card.classList.add('show');
+        card.scrollIntoView({behavior:'smooth',block:'nearest'});
+    }
     async function handleDownload(){
         var url=urlInput.value.trim();
         if(!url){showError('Please paste a Pinterest URL first');return;}
         if(url.indexOf('pinterest.com')===-1&&url.indexOf('pin.it')===-1){showError('Invalid URL. Only pinterest.com and pin.it links are supported.');return;}
         errorBox.classList.remove('active');
-        resultCard.classList.remove('active');
+        resultCard.classList.remove('show');
         spinner.classList.add('active');
         downloadBtn.disabled=true;
         try{
@@ -304,12 +348,7 @@
             spinner.classList.remove('active');
             downloadBtn.disabled=false;
             if(!data.success){showError(data.error||'Failed to fetch video');return;}
-            currentVideoUrl=data.videoUrl;
-            resultThumb.src=data.thumbnailUrl||'';
-            resultThumb.style.display=data.thumbnailUrl?'block':'none';
-            resultTitle.textContent=data.title||'Pinterest Video';
-            resultCard.classList.add('active');
-            resultCard.scrollIntoView({behavior:'smooth',block:'nearest'});
+            showResult(data);
         }catch(err){showError('Network error. Please try again.');}
     }
 
@@ -349,3 +388,4 @@
 </script>
 </body>
 </html>
+
