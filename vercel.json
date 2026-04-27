@@ -1,4 +1,11 @@
 {
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/blog/:slug",
+      "destination": "/blog/:slug.html"
+    }
+  ],
   "functions": {
     "api/download.js": {
       "maxDuration": 15
